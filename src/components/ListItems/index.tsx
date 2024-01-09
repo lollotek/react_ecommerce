@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const ListItems = ( { page }: Props ): JSX.Element => {
-    const {data, isFetching, isError} = useGetProductsQuery(page)
+    const {data, isFetching, isError} = useGetProductsQuery(page-1)
     return (
     <>
       {isError && <p>Error reading data, try later</p>}
