@@ -12,7 +12,9 @@ aprire il browser all'indirizzo http://localhost:5173/ (verificare nella console
 Il progetto utilizza vite come package manager, e parte da una base vuota per creare un progetto maggiormente personalizzato rispetto a controparti come nextJs.  
 Per i componenti verrà utilizzato radix, che permette uno sviluppo slegato al design che verrà personalizzato in un secondo momento.  
 Per lo styling verrà utilizzato tailwindcss.
-PEr la gestione delle API verrà utilizzato RTK Query, e verrà demandato ai singoli moduli la possibilità di gestire la propria parte di dati, questo rendereà la composizione più versatile.
+Per la gestione delle API verrà utilizzato RTK Query, e verrà demandato ai singoli moduli la possibilità di gestire la propria parte di dati, questo rendereà la composizione più versatile.
+
+Il sito verrà considerato in modalità "guest". la persistenza del carrello avverrà tramite local storage
 
 # Richieste progetto
 

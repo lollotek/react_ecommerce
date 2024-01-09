@@ -7,11 +7,13 @@ type Props = {
 }
 
 export const ListItems = ( { page }: Props ): JSX.Element => {
-    const {data, isFetching} = useGetProductsQuery(page)
+    const {data, isFetching, isError} = useGetProductsQuery(page)
     return (
     <>
+      {isError && <p>Error reading data, try later</p>}
+      {isFetching && <p>Loading.. </p>}
       <Flex direction="column" gap="9">
-        {!isFetching && data?.products?.map((product) => <ListItem {...product} ></ListItem>)}
+        {!isFetching && data?.products?.map((product) => <ListItem key={product.id} {...product} ></ListItem>)}
       </Flex>
     </>
   )
