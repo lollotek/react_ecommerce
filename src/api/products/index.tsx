@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ProductResponse } from '../types';
+import { Product, ProductResponse } from '../types';
 import { PAGINATION_SIZE } from '../const';
 
 
@@ -11,9 +11,12 @@ export const productsApi = createApi({
     getProducts: builder.query<ProductResponse, number>({
       query: (page) => `products?limit=${PAGINATION_SIZE}&skip=${page * PAGINATION_SIZE}`,
     }),
+    getProduct: builder.query<Product, number>({
+      query: (productId) => `products/${productId}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetProductsQuery } = productsApi
+export const { useGetProductsQuery, useGetProductQuery } = productsApi
