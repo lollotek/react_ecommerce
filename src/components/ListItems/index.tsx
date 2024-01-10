@@ -1,6 +1,6 @@
 import { Flex } from '@radix-ui/themes';
-import { useGetProductsQuery } from '../../api/products';
-import { ListItem } from '../ListItem';
+import { useGetProductsQuery } from '@api/products';
+import { ListItem } from '@components/ListItem';
 
 type Props = {
   page: number,

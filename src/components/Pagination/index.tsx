@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Flex, IconButton } from '@radix-ui/themes';
 import { DoubleArrowLeftIcon, ArrowLeftIcon, DoubleArrowRightIcon, ArrowRightIcon } from '@radix-ui/react-icons';
-import { PAGINATION_SIZE } from '../../api/const';
-import { useGetProductsQuery } from '../../api/products';
+import { useGetProductsQuery } from '@api/products';
+import { PAGINATION_SIZE } from '@api/const';
 
 type Props = {
   onChangePage: ((page:number) => void)
@@ -39,7 +39,6 @@ export const Pagination = ({ onChangePage, page }: Props): JSX.Element => {
       <IconButton disabled={disableStart} onClick={() => onChangePage(page-1)}>
         <ArrowLeftIcon width="18" height="18" />
       </IconButton>
-
       {prevPages.map(prevPage =>
         <IconButton key={prevPage} onClick={() => onChangePage(prevPage)}>
           <p>{prevPage}</p>
