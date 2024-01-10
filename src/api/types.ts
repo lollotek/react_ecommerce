@@ -3,13 +3,13 @@ export type Product =  {
     title: string,
     description: string,
     price: number,
-    discountPercentage: number,
-    rating: number,
-    stock: number,
-    brand: string,
-    category: string,
+    discountPercentage?: number,
+    rating?: number,
+    stock?: number,
+    brand?: string,
+    category?: string,
     thumbnail: string,
-    images: Array<string>
+    images?: Array<string>
 }
 
 export type Params =  {
