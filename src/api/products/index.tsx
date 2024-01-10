@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ProductResponse } from '../types';
+import { PAGINATION_SIZE } from '../const';
 
-const PAGINATION_SIZE = 10;
 
 // Define a service using a base URL and expected endpoints
 export const productsApi = createApi({

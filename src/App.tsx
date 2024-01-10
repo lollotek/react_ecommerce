@@ -1,20 +1,24 @@
 import { useState } from 'react'
-import { Flex, Text, Button } from '@radix-ui/themes';
 import {ListItems} from './components/ListItems';
+import { Pagination } from './components/Pagination';
+import { Box, Container, Flex } from '@radix-ui/themes';
 
 function App() {
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
  
-
   return (
     <>
       <h1>dummy-commerce</h1>
-      <ListItems page={page} />
+      <Container size="1">
+        <Box>
+          <Flex gap="2" direction="column" >
+            <Pagination onChangePage={setPage} page={page} />
+            <ListItems page={page} />
+            <Pagination onChangePage={setPage} page={page} />
+          </Flex>
+        </Box>
+      </Container>
 
-      <Flex direction="column" gap="2">
-        <Text>current page: {page}</Text>
-        <Button onClick={() => setPage((count) => count + 1)}>next</Button>
-      </Flex>
     </>
   )
 }
