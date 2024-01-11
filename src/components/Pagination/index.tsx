@@ -3,13 +3,11 @@ import { Flex, IconButton } from '@radix-ui/themes';
 import { DoubleArrowLeftIcon, ArrowLeftIcon, DoubleArrowRightIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { useGetProductsQuery } from '@api/products';
 import { PAGINATION_SIZE } from '@api/const';
+import { Link, useParams } from 'react-router-dom';
 
-type Props = {
-  onChangePage: ((page:number) => void)
-  page: number,
-}
-
-export const Pagination = ({ onChangePage, page }: Props): JSX.Element => {
+export const Pagination = (): JSX.Element => {
+  const { pageParam } = useParams();
+  const page = Number(pageParam || 1)
   const {data, isFetching} = useGetProductsQuery(page-1)
 
   const max = useMemo(() => {
@@ -33,16 +31,22 @@ export const Pagination = ({ onChangePage, page }: Props): JSX.Element => {
  
   return(
     <Flex gap="2">
-      <IconButton disabled={disableStart} onClick={() => onChangePage(1)}>
-        <DoubleArrowLeftIcon width="18" height="18" />
-      </IconButton>
-      <IconButton disabled={disableStart} onClick={() => onChangePage(page-1)}>
-        <ArrowLeftIcon width="18" height="18" />
-      </IconButton>
+      <Link to={`/products/${1}`}>
+        <IconButton disabled={disableStart}>
+          <DoubleArrowLeftIcon width="18" height="18" />
+        </IconButton>
+      </Link>
+      <Link to={`/products/${page-1}`}>
+        <IconButton disabled={disableStart}>
+          <ArrowLeftIcon width="18" height="18" />
+        </IconButton>
+      </Link>
       {prevPages.map(prevPage =>
-        <IconButton key={prevPage} onClick={() => onChangePage(prevPage)}>
-          <p>{prevPage}</p>
-        </IconButton> 
+        <Link to={`/products/${prevPage}`}>
+          <IconButton key={prevPage}>
+            <p>{prevPage}</p>
+          </IconButton> 
+        </Link>
       )}
 
       <IconButton variant="outline">
@@ -50,17 +54,22 @@ export const Pagination = ({ onChangePage, page }: Props): JSX.Element => {
       </IconButton>
 
       {nextPages.map(nextPage =>
-        <IconButton key={nextPage} onClick={() => onChangePage(nextPage)}>
-          <p>{nextPage}</p>
-        </IconButton> 
+        <Link to={`/products/${nextPage}`}>
+          <IconButton key={nextPage}>
+            <p>{nextPage}</p>
+          </IconButton> 
+        </Link>
       )}
-      
-      <IconButton disabled={disableEnd} onClick={() => onChangePage(page+1)}>
-        <ArrowRightIcon width="18" height="18" />
-      </IconButton>
-      <IconButton disabled={disableEnd} onClick={() => onChangePage(max)}>
-        <DoubleArrowRightIcon width="18" height="18" />
-      </IconButton>
+      <Link to={`/products/${page+1}`}>
+        <IconButton disabled={disableEnd}>
+          <ArrowRightIcon width="18" height="18" />
+        </IconButton>
+      </Link>
+      <Link to={`/products/${max}`}>
+        <IconButton disabled={disableEnd}>
+          <DoubleArrowRightIcon width="18" height="18" />
+        </IconButton>
+      </Link>
     </Flex>
   )
 }

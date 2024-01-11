@@ -17,7 +17,7 @@ vi.mock('@api/products', () => ({
 
 describe("List Items", () => {
   test("Render a list of items", () => {
-    render(<ListItems page={1} />);
+    render(<ListItems />);
     expect(screen.getByText(/999/i)).toBeDefined()
     expect(screen.getByText(/^test$/i)).toBeDefined()
     expect(screen.getByText(/^add to cart$/i)).toBeDefined()
