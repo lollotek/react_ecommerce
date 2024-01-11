@@ -1,13 +1,11 @@
 import { Flex } from '@radix-ui/themes';
 import { useGetProductsQuery } from '@api/products';
 import { ListItem } from '@components/ListItem';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-  page: number,
-}
-
-export const ListItems = ( { page }: Props ): JSX.Element => {
-    const {data, isFetching, isError} = useGetProductsQuery(page-1)
+export const ListItems = (): JSX.Element => {
+    const { pageParam } = useParams();
+    const {data, isFetching, isError} = useGetProductsQuery(Number(pageParam || 1) -1)
     return (
     <>
       {isError && <p>Error reading data, try later</p>}
