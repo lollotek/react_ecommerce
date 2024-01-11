@@ -1,7 +1,7 @@
 import { Flex, Text, Button } from '@radix-ui/themes';
 import { useLocalStorage } from "@uidotdev/usehooks";
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-import { Product } from '../../api/types';
+import { Product } from '@api/types';
 import './style.css'
 
 export const ListItem = ({ id, title, thumbnail, price, description }: Product): JSX.Element => {

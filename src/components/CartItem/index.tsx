@@ -1,6 +1,6 @@
 import { Flex, Text, Button } from '@radix-ui/themes';
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { useGetProductQuery } from '../../api/products';
+import { useGetProductQuery } from '@api/products';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import './style.css'
 

@@ -1,5 +1,5 @@
 import { Flex } from '@radix-ui/themes';
-import { CartItem, CartProps } from '../CartItem';
+import { CartItem, CartProps } from '@components/CartItem';
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useMemo } from 'react';
 
