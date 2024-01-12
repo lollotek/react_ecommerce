@@ -1,5 +1,10 @@
 # Dummy ecommerce
 
+## Online deploy
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c559a836-03a9-4a3a-b9e8-b9a690ff7b05/deploy-status)](https://app.netlify.com/sites/euphonious-mochi-666b51/deploys)  
+è possibile accedere ad un deploy pubblico a questo indirizzo:  
+https://euphonious-mochi-666b51.netlify.app/
+
 ## Installazione ed avvio locale del progetto
 Il progetto richiede node v18 o superiore.  
 utilizzare i seguenti comandi per l'installazione e l'avvio.  
