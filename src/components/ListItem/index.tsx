@@ -1,4 +1,4 @@
-import { Flex, Text, Button, Card, Inset, Strong, Box } from '@radix-ui/themes';
+import { Flex, Text, Button, Strong, Box } from '@radix-ui/themes';
 import { useLocalStorage } from "@uidotdev/usehooks";
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import { Product } from '@api/types';

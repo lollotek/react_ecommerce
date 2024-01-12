@@ -1,6 +1,6 @@
 import { ListItems } from '@components/ListItems';
 import { Pagination } from '@components/Pagination';
-import { Box, Container, Flex, Section } from '@radix-ui/themes';
+import { Section } from '@radix-ui/themes';
 
 function Products() {
   return (

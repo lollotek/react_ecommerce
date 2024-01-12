@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Container, Flex, IconButton } from '@radix-ui/themes';
+import { Container, IconButton } from '@radix-ui/themes';
 import { DoubleArrowLeftIcon, ArrowLeftIcon, DoubleArrowRightIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { useGetProductsQuery } from '@api/products';
 import { PAGINATION_SIZE } from '@api/const';
