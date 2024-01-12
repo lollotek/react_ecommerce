@@ -42,8 +42,8 @@ export const Pagination = (): JSX.Element => {
         </IconButton>
       </Link>
       {prevPages.map(prevPage =>
-        <Link to={`/products/${prevPage}`}>
-          <IconButton key={prevPage}>
+        <Link key={prevPage} to={`/products/${prevPage}`}>
+          <IconButton>
             <p>{prevPage}</p>
           </IconButton> 
         </Link>
@@ -54,8 +54,8 @@ export const Pagination = (): JSX.Element => {
       </IconButton>
 
       {nextPages.map(nextPage =>
-        <Link to={`/products/${nextPage}`}>
-          <IconButton key={nextPage}>
+        <Link key={nextPage} to={`/products/${nextPage}`}>
+          <IconButton>
             <p>{nextPage}</p>
           </IconButton> 
         </Link>
