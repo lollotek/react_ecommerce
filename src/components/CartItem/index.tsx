@@ -1,8 +1,8 @@
 import { Flex, Text, Button } from '@radix-ui/themes';
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { useGetProductQuery } from '@api/products';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import './style.css'
+import { useCartProducts } from '@services/hooks';
 
 export type CartProps = {
   productId: number,
@@ -10,16 +10,11 @@ export type CartProps = {
 }
 
 export const CartItem = ({ productId, quantity }: CartProps): JSX.Element => {
-  const [cart, saveCart] = useLocalStorage<Array<number>>("cart", []);
+  const { removeCartProduct } = useCartProducts()
   const {data, isFetching} = useGetProductQuery(productId)
 
   const removeItemFromCart = () => {
-    const indexToRemove = cart.indexOf(productId)
-      
-    saveCart([
-      ...cart.slice(0, indexToRemove),
-      ...cart.slice(indexToRemove+1)
-    ])
+    removeCartProduct(productId)
   }
 
   if (isFetching || !data) return (<></>)
