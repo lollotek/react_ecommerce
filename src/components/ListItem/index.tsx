@@ -1,7 +1,6 @@
 import { Flex, Text, Strong, Box } from '@radix-ui/themes';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import { Product } from '@api/types';
-import './style.css'
 import { AddToCartButton } from '@components/AddToCart/Index';
 
 export const ListItem = ({ id, title, thumbnail, price, description }: Product): JSX.Element => {

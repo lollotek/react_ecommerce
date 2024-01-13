@@ -25,7 +25,15 @@ export const CartItem = ({ productId, quantity }: CartProps): JSX.Element => {
     addCartProduct(productId)
   }
 
-  if (isFetching || !data) return (<></>)
+  if (isFetching || !data) return (
+    <Box className="shadow-blue-500/50 w-full overflow-hidden rounded-md shadow-[0_2px_5px] max-w-[600px] h-full">
+      <div className="animate-pulse">
+        <div className="bg-slate-500 h-48 sm:h-24">
+        </div>
+      </div>
+    </Box>
+  )
+
   const { title, thumbnail, price, description } = data
   return (
     <Box className="shadow-blue-500/50 w-full overflow-hidden rounded-md shadow-[0_2px_5px] max-w-[600px] h-full">
