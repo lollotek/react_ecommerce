@@ -30,10 +30,19 @@ export const useCartProducts = () => {
     ])
   }, [cart])
 
+  const removeAllCartProduct = useCallback((productId: number) =>
+  {
+    const cartCleaned = cart.reduce(
+      (accumulator, id) => (((productId === id) ? accumulator : [...accumulator, id])),
+      [] as Array<number>
+    );
+    saveCart(cartCleaned)
+  }, [cart])
+
   const addCartProduct = useCallback((productId: number) =>
   {
     saveCart([...cart, productId])
   }, [cart])
 
-  return {cartProducts, removeCartProduct, addCartProduct}
+  return {cartProducts, removeCartProduct, removeAllCartProduct, addCartProduct}
 }

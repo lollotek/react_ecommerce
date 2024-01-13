@@ -2,21 +2,36 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Product, ProductResponse } from '@api/types';
 import { PAGINATION_SIZE } from '@api/const';
 
-
-// Define a service using a base URL and expected endpoints
 export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com/' }),
   endpoints: (builder) => ({
     getProducts: builder.query<ProductResponse, number>({
-      query: (page) => `products?limit=${PAGINATION_SIZE}&skip=${page * PAGINATION_SIZE}`,
+      query: (page) => `products?limit=${PAGINATION_SIZE}&skip=${page * PAGINATION_SIZE}&select=id,thumbnail,title,description,price`,
     }),
     getProduct: builder.query<Product, number>({
       query: (productId) => `products/${productId}`,
     }),
+    getProductList: builder.query<Array<Product>, Array<number>>({
+      async queryFn(
+        productIds,
+        _queryApi,
+        _,
+        fetch
+      ) {
+        const response: Array<Product> = []
+        for (const productId of productIds) {
+          const result = await fetch({
+            url: `products/${productId}`,
+            method: 'GET',
+          });
+          if ('error' in result) throw result.error;
+          response.push(result.data as Product)
+        }
+        return {data: response};
+      },
+    }),
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetProductsQuery, useGetProductQuery } = productsApi
+export const { useGetProductsQuery, useGetProductQuery, useGetProductListQuery } = productsApi
