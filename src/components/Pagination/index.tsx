@@ -27,7 +27,14 @@ export const Pagination = (): JSX.Element => {
     }
   }, [page, max]);
 
-  if (isFetching) return (<></>);
+  if (isFetching) return (
+    <Container my={{ initial: '2', xs:'6'}}>
+      <div className="animate-pulse flex place-content-center w-full">
+        <div className="bg-slate-500 h-8 w-64 rounded-md">
+        </div>
+      </div>
+    </Container>
+  );
  
   return(
     <Container my={{ initial: '2', xs:'6'}}>
