@@ -17,6 +17,17 @@ const items = [
   }
 ]
 
+const items2 = [
+  {  
+    productId: 1,
+    quantity: 2,
+  },
+  {
+    productId: 6,
+    quantity: 1,
+  }
+]
+
 describe("hooks", () => {
   afterEach(() => {
       localStorage.clear();
@@ -40,6 +51,10 @@ describe("hooks", () => {
       result.current.removeCartProduct(1)
     })
     expect(result.current.cartProducts).toStrictEqual(items)
+    act(() => {
+      result.current.removeAllCartProduct(2)
+    })
+    expect(result.current.cartProducts).toStrictEqual(items2)
   })
     
 })

@@ -19,7 +19,8 @@ Per i componenti verrà utilizzato radix, che permette uno sviluppo slegato al d
 Per lo styling verrà utilizzato tailwindcss.
 Per la gestione delle API verrà utilizzato RTK Query, e verrà demandato ai singoli moduli la possibilità di gestire la propria parte di dati, questo rendereà la composizione più versatile.
 
-Il sito verrà considerato in modalità "guest". la persistenza del carrello avverrà tramite local storage
+Il sito verrà considerato in modalità "guest".  
+La persistenza del carrello avverrà tramite local storage. i dati vengono gestiti solo tramite id, in modo da avere i dati prodotto sempre aggiornati (per es. potrebbe cambiare il prezzo)
 
 # Richieste progetto
 
