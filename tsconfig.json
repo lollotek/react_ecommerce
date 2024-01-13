@@ -22,8 +22,9 @@
     "baseUrl": ".",
     "paths": {
       "@api/*": ["./src/api/*"],
-      "@pages/*": ["./src/pages/*"],
       "@services/*": ["./src/services/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@sections/*": ["./src/sections/*"],
       "@components/*": ["./src/components/*"]
     },
     "types": ["node", "jsdom"]
