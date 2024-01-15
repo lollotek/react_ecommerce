@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
-import { Container, IconButton } from '@radix-ui/themes';
-import { DoubleArrowLeftIcon, ArrowLeftIcon, DoubleArrowRightIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { Button, Container, IconButton } from '@radix-ui/themes';
+import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { useGetProductsQuery } from '@api/products';
 import { PAGINATION_SIZE } from '@api/const';
 import { Link, useParams } from 'react-router-dom';
+
+const MAX_STEPS = 2
 
 export const Pagination = (): JSX.Element => {
   const { pageParam } = useParams();
@@ -16,7 +18,6 @@ export const Pagination = (): JSX.Element => {
   }, [data]);
 
   const {disableStart, disableEnd, prevPages, nextPages} = useMemo(() => {
-    const MAX_STEPS = 2
     const availableNext = Math.min(MAX_STEPS, max - page);
     const availablePrev = Math.min(MAX_STEPS, page-1);
     return {
@@ -39,45 +40,68 @@ export const Pagination = (): JSX.Element => {
   return(
     <Container my={{ initial: '2', xs:'6'}}>
       <div className="flex gap-x-2 justify-center">
-        <Link to={`/products/${1}`}>
-          <IconButton disabled={disableStart}>
-            <DoubleArrowLeftIcon width="18" height="18" />
-          </IconButton>
-        </Link>
+
         <Link to={`/products/${page-1}`}>
-          <IconButton disabled={disableStart}>
+          <Button disabled={disableStart} variant="outline">
             <ArrowLeftIcon width="18" height="18" />
-          </IconButton>
+            Previus
+          </Button>
         </Link>
+
+        {(page - MAX_STEPS > 1) &&
+          <Link to={`/products/1`}>
+            <IconButton variant="outline">
+              1
+            </IconButton>
+          </Link>
+        }
+        {(page - MAX_STEPS > 2) &&
+          <IconButton disabled={true} variant="outline">
+            ...
+          </IconButton>
+        }
+
         {prevPages.map(prevPage =>
           <Link key={prevPage} to={`/products/${prevPage}`}>
-            <IconButton>
+            <IconButton variant="outline">
               <p>{prevPage}</p>
             </IconButton> 
           </Link>
         )}
 
-        <IconButton variant="outline">
+        <IconButton variant="soft">
             <p>{page}</p>
         </IconButton>
 
         {nextPages.map(nextPage =>
           <Link key={nextPage} to={`/products/${nextPage}`}>
-            <IconButton>
+            <IconButton variant="outline">
               <p>{nextPage}</p>
             </IconButton> 
           </Link>
         )}
+
+        {(page + MAX_STEPS < max) &&
+          <>
+            <IconButton disabled={true}>
+              ...
+            </IconButton>
+            <IconButton disabled={true}>
+              {max}
+            </IconButton>
+          </>
+        }
+
         <Link to={`/products/${page+1}`}>
-          <IconButton disabled={disableEnd}>
-            <ArrowRightIcon width="18" height="18" />
-          </IconButton>
+          <Button disabled={disableEnd} variant="outline">
+            Next <ArrowRightIcon width="18" height="18" />
+          </Button>
         </Link>
-        <Link to={`/products/${max}`}>
+        {/* <Link to={`/products/${max}`}>
           <IconButton disabled={disableEnd}>
             <DoubleArrowRightIcon width="18" height="18" />
           </IconButton>
-        </Link>
+        </Link> */}
       </div>
       </Container>
   )
