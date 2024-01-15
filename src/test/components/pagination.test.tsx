@@ -29,11 +29,12 @@ describe("Pagination", () => {
   test("Render initial buttons", () => {
     render(<Pagination/>);
     expect(screen.getAllByRole('button')[0]).toHaveAttribute('data-disabled', "true")
-    expect(screen.getAllByRole('button')[1]).toHaveAttribute('data-disabled', "true")
-    expect(screen.getByText(/1/i)).toBeDefined()
-    expect(screen.getByText(/2/i)).toBeDefined()
-    expect(screen.getByText(/3/i)).toBeDefined()
-    expect(screen.queryByText(/4/i)).toBeFalsy()
-    expect(screen.queryByText(/5/i)).toBeFalsy()
+    expect(screen.getByText(/^1$/i)).toBeDefined()
+    expect(screen.getByText(/^2$/i)).toBeDefined()
+    expect(screen.getByText(/^3$/i)).toBeDefined()
+    expect(screen.queryByText(/^4$/i)).toBeFalsy()
+    expect(screen.getAllByRole('button')[4]).toHaveAttribute('data-disabled', "true")
+    expect(screen.getAllByRole('button')[5]).toHaveAttribute('data-disabled', "true")
+    expect(screen.queryByText(/^Next$/i)).toBeDefined()
   })
 })
