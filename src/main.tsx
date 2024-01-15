@@ -11,6 +11,7 @@ import { router } from './services/router/router.tsx';
 import * as Toast from '@radix-ui/react-toast';
 
 import '@radix-ui/themes/styles.css';
+import './theme-config.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
