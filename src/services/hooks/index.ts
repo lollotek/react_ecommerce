@@ -21,6 +21,11 @@ export const useCartProducts = () => {
     return resultArray;
   }, [cart])
 
+  const cartProductsCounter = useMemo(() => {
+    if (!cart) return 0
+    return cart?.length
+  }, [cart])
+
   const removeCartProduct = useCallback((productId: number) =>
   {
     const indexToRemove = cart.indexOf(productId)
@@ -44,5 +49,5 @@ export const useCartProducts = () => {
     saveCart([...cart, productId])
   }, [cart])
 
-  return {cartProducts, removeCartProduct, removeAllCartProduct, addCartProduct}
+  return {cartProducts, removeCartProduct, removeAllCartProduct, addCartProduct, cartProductsCounter}
 }

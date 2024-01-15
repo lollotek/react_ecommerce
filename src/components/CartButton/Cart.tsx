@@ -4,13 +4,13 @@ import { useCartProducts } from '@services/hooks';
 import { Link } from 'react-router-dom';
 
 export const CartButton = () => {
-  const {cartProducts} = useCartProducts()
+  const {cartProductsCounter} = useCartProducts()
   return (
     <Link to={"/cart"}>
       <Button className="relative min-w-32">
-        {cartProducts?.length > 0 && 
+        {cartProductsCounter > 0 && 
           <Badge variant="solid" radius="full" color="orange" className="absolute -top-1 -left-2">
-            {cartProducts.length}
+            {cartProductsCounter}
           </Badge>
         }
         <LockClosedIcon width="18" height="18" />          
