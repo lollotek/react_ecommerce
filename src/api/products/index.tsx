@@ -6,9 +6,19 @@ export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com/' }),
   endpoints: (builder) => ({
-    getProducts: builder.query<ProductResponse, number>({
-      query: (page) => `products?limit=${PAGINATION_SIZE}&skip=${page * PAGINATION_SIZE}&select=id,thumbnail,title,description,price`,
-    }),
+    getProducts: builder.query<ProductResponse, {page: number, q?: string}>({
+      query: ({page, q}) => {
+      return {
+        url: 'products/search',
+        params: {
+          select: 'id,thumbnail,title,description,price',
+          skip: page * PAGINATION_SIZE,
+          limit: PAGINATION_SIZE,
+          page,
+          q,
+        },
+      };
+    }}),
     getProduct: builder.query<Product, number>({
       query: (productId) => `products/${productId}`,
     }),

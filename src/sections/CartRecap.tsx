@@ -1,6 +1,6 @@
 import { useGetProductListQuery } from '@api/products';
 import { Flex, Section, Text } from '@radix-ui/themes';
-import { useCartProducts } from '@services/hooks';
+import { useCartProducts } from '@services/hooks/cart';
 import { useMemo } from 'react';
 
 function CartRecap() {

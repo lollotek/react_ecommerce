@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
-import { useCartProducts } from '@services/hooks';
+import { useCartProducts } from '@services/hooks/cart';
 
 const items = [
   {  

@@ -1,7 +1,7 @@
 import { Flex, Text, Button, IconButton, Box } from '@radix-ui/themes';
 import { useGetProductQuery } from '@api/products';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-import { useCartProducts } from '@services/hooks';
+import { useCartProducts } from '@services/hooks/cart';
 import { MinusIcon, PlusIcon } from '@radix-ui/react-icons';
 
 export type CartProps = {
