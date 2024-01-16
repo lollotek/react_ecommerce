@@ -1,32 +1,25 @@
-import { useMemo } from 'react';
-import { Button, Container, IconButton } from '@radix-ui/themes';
+import { Button, Container, IconButton, Text } from '@radix-ui/themes';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
-import { useGetProductsQuery } from '@api/products';
-import { PAGINATION_SIZE } from '@api/const';
-import { Link, useParams } from 'react-router-dom';
-
-const MAX_STEPS = 2
+import { Link } from 'react-router-dom';
+import { usePagination } from '@services/hooks/pagination';
 
 export const Pagination = (): JSX.Element => {
-  const { pageParam } = useParams();
-  const page = Number(pageParam || 1)
-  const {data, isFetching} = useGetProductsQuery(page-1)
-
-  const max = useMemo(() => {
-    if (!data) return 0
-    return Math.ceil(data.total / PAGINATION_SIZE)
-  }, [data]);
-
-  const {disableStart, disableEnd, prevPages, nextPages} = useMemo(() => {
-    const availableNext = Math.min(MAX_STEPS, max - page);
-    const availablePrev = Math.min(MAX_STEPS, page-1);
-    return {
-      prevPages: Array.from({ length: availablePrev }, (_, index) => page - 1 - index).reverse(),
-      nextPages: Array.from({ length: availableNext }, (_, index) => page + 1 +  index),
-      disableEnd: page === max,
-      disableStart: page === 1 ,
-    }
-  }, [page, max]);
+  const {
+    prevPage,
+    nextPage,
+    prevPages,
+    nextPages,
+    disableStart,
+    disableEnd,
+    showOne,
+    showToOne,
+    showMax,
+    max,
+    page,
+    params,
+    total,
+    isFetching
+  } = usePagination()
 
   if (isFetching) return (
     <Container my={{ initial: '2', xs:'6'}}>
@@ -36,35 +29,39 @@ export const Pagination = (): JSX.Element => {
       </div>
     </Container>
   );
+
+  if (total === 0) {
+    return <></>
+  }
  
   return(
-    <Container my={{ initial: '2', xs:'6'}}>
+    <Container my={{ initial: '4', xs:'6'}}>
       <div className="flex gap-x-2 justify-center">
 
-        <Link to={`/products/${page-1}`}>
+        <Link to={`/products/${prevPage}?${params}`}>
           <Button disabled={disableStart} variant="outline">
             <ArrowLeftIcon width="18" height="18" />
-            Previus
+            <Text className="hidden sm:inline-flex">Previus</Text>
           </Button>
         </Link>
 
-        {(page - MAX_STEPS > 1) &&
-          <Link to={`/products/1`}>
+        {showOne &&
+          <Link to={`/products/1?${params}`}>
             <IconButton variant="outline">
               1
             </IconButton>
           </Link>
         }
-        {(page - MAX_STEPS > 2) &&
+        {showToOne &&
           <IconButton disabled={true} variant="outline">
             ...
           </IconButton>
         }
 
-        {prevPages.map(prevPage =>
-          <Link key={prevPage} to={`/products/${prevPage}`}>
+        {prevPages.map(page =>
+          <Link key={page} to={`/products/${page}?${params}`}>
             <IconButton variant="outline">
-              <p>{prevPage}</p>
+              <p>{page}</p>
             </IconButton> 
           </Link>
         )}
@@ -73,15 +70,15 @@ export const Pagination = (): JSX.Element => {
             <p>{page}</p>
         </IconButton>
 
-        {nextPages.map(nextPage =>
-          <Link key={nextPage} to={`/products/${nextPage}`}>
+        {nextPages.map(page =>
+          <Link key={page} to={`/products/${page}?${params}`}>
             <IconButton variant="outline">
-              <p>{nextPage}</p>
+              <p>{page}</p>
             </IconButton> 
           </Link>
         )}
 
-        {(page + MAX_STEPS < max) &&
+        {(showMax) &&
           <>
             <IconButton disabled={true}>
               ...
@@ -92,16 +89,12 @@ export const Pagination = (): JSX.Element => {
           </>
         }
 
-        <Link to={`/products/${page+1}`}>
+        <Link to={`/products/${nextPage}?${params}`}>
           <Button disabled={disableEnd} variant="outline">
-            Next <ArrowRightIcon width="18" height="18" />
+            <Text className="hidden sm:inline-flex">Next</Text> <ArrowRightIcon width="18" height="18" />
           </Button>
         </Link>
-        {/* <Link to={`/products/${max}`}>
-          <IconButton disabled={disableEnd}>
-            <DoubleArrowRightIcon width="18" height="18" />
-          </IconButton>
-        </Link> */}
+        
       </div>
       </Container>
   )

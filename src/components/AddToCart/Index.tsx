@@ -1,7 +1,7 @@
 import {  useState } from "react";
 import * as Toast from '@radix-ui/react-toast';
 import { Button, Text } from "@radix-ui/themes";
-import { useCartProducts } from '@services/hooks';
+import { useCartProducts } from '@services/hooks/cart';
 export type Props = {
   id: number,
   description: string,

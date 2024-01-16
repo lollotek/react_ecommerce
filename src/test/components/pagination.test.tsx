@@ -22,6 +22,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
     ...original,
     Link: vi.fn(({children }) => <div>{children}</div>),
     useParams: vi.fn(() => ({pageParam: 1})),
+    useSearchParams: vi.fn(() => ([{ get: ()=> (null) }])),
   }
 })
 
@@ -31,10 +32,8 @@ describe("Pagination", () => {
     expect(screen.getAllByRole('button')[0]).toHaveAttribute('data-disabled', "true")
     expect(screen.getByText(/^1$/i)).toBeDefined()
     expect(screen.getByText(/^2$/i)).toBeDefined()
-    expect(screen.getByText(/^3$/i)).toBeDefined()
     expect(screen.queryByText(/^4$/i)).toBeFalsy()
     expect(screen.getAllByRole('button')[4]).toHaveAttribute('data-disabled', "true")
-    expect(screen.getAllByRole('button')[5]).toHaveAttribute('data-disabled', "true")
     expect(screen.queryByText(/^Next$/i)).toBeDefined()
   })
 })

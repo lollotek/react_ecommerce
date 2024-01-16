@@ -1,6 +1,6 @@
 import { Flex, Section } from '@radix-ui/themes';
 import { CartItem } from '@components/CartItem';
-import { useCartProducts } from '@services/hooks';
+import { useCartProducts } from '@services/hooks/cart';
 
 export const CartItems = ( ): JSX.Element => {
   const { cartProducts } = useCartProducts()
